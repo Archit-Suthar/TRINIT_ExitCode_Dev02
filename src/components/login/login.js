@@ -4,7 +4,7 @@ import './login.css'
 //     Link
 //   } from "react-router-dom";
   import { useNavigate } from 'react-router'
-// import './login/login.css';
+import './login.css';
 const Login = () => {
 
    let navigate = useNavigate();
@@ -34,7 +34,7 @@ const Login = () => {
   }
   return (
     <div className="center">
-    <div className="container">
+    <div className="container-login">
        <div className="text">
           Login Form
        </div>
