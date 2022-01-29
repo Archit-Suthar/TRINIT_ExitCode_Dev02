@@ -7,11 +7,10 @@ export default function Buglist() {
         letterSpacing: '0.2rem'
     }
 
-
     return (
         <div className='mt-2'>
             <h2 style={h1style} > BUGS BEING TAKEN CARE OF</h2>
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant="light">
   <thead>
     <tr>
       <th>#</th>
