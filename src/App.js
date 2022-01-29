@@ -1,14 +1,15 @@
 import './App.css';
-import Navbar from './components/navbar/Navbar';
+import Navbar from './components/navbar/navbar';
 import AddBug from './components/Bug/AddBug';
-import Buglist from './components/buglist/Buglist';
+import Buglist from './components/buglist/buglist';
+import Login from './components/login/login'
 function App() {
   return (
     <div className="App">
       <Navbar/>
-      <AddBug/>
       <Buglist/>
-
+      <AddBug/>
+      {/* <Login/> */}
     </div>
   );
 }
