@@ -19,7 +19,7 @@ function AddBug() {
   const onChange = (e)=>{
     setBug({...bug,[e.target.name]:e.target.value});
   }
-  return <div>
+  return <div className="mt-4">
     <button type="button" className="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#addBug">
       Report a new Bug
     </button>
