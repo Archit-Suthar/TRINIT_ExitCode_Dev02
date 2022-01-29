@@ -1,7 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router'
 // import { Link } from 'react-router-dom';
 
 function Navbar() {
+   let navigate = useNavigate();
+
+    const handleLogin = () => {
+        navigate("/login")
+    }
     return <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -17,9 +23,11 @@ function Navbar() {
                         <li className="nav-item">
                             <a className="nav-link" href="/dashboard">Dashboard</a>
                         </li>
-                       
-                        
+
                     </ul>
+                        <div class="d-flex">
+                            <button class="btn btn-outline-primary" onClick={handleLogin}>Login / SignUp</button>
+                        </div>
 
                 </div>
             </div>

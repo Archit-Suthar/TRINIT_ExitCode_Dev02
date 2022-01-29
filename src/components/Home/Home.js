@@ -1,13 +1,12 @@
 import React from 'react'
-import Navbar from '../navbar/navbar';
-import AddBug from '../Bug/AddBug';
-import Buglist from '../buglist/Buglist';
+import Navbar from '../navbar/Navbar';
+
 const Home = () => {
   return (
     <div>
       <Navbar />
-        <Buglist/>
-        <AddBug/>
+
+      <h2>Welcome to BugTracker</h2>
     </div>
   )
 }
