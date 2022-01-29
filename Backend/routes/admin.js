@@ -60,8 +60,8 @@ router.post('/login',[
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {email,password} = req.body;
-    try {
+    const {email,password,post} = req.body;
+    try { 
         let admin = await Administration.findOne({email});
         if(!admin){
             return res.status(400).json({success,error:"Please try to login with correct credentials"})
@@ -73,12 +73,15 @@ router.post('/login',[
         }
         const data = {
             admin:{
-                id:admin.id
+                id:admin.id,
+                post:admin.post 
             } 
         }
         const authtoken = jwt.sign(data,JWT_SECRET);
         success=true;
-        res.json({success,authtoken})
+        if(post == admin.post){
+            res.json({success,authtoken,post:admin.post})
+        }
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error") 

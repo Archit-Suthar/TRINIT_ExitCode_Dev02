@@ -1,6 +1,20 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react';
+import bugContext from "../../context/bugs/bugContext";
+import Bugitem from '../Bug/Bugitem';
+import { useNavigate } from 'react-router'
 import { Table } from 'react-bootstrap'
 export default function Buglist() {
+  const navigate = useNavigate();
+  const context = useContext(bugContext);
+  const { bugs, getBug} = context;
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      getBug();
+    }else{
+        navigate("/login")
+    }
+    // eslint-disable-next-line
+}, [])
 
   const h1style = {
     color: 'grey',
@@ -21,24 +35,9 @@ export default function Buglist() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Bug-1</td>
-            <td>Run-time</td>
-            <td>404</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Bug-2</td>
-            <td>Compile Time</td>
-            <td>400</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Bug-3</td>
-            <td>Logical</td>
-            <td>500</td>
-          </tr>
+          {bugs.map((bug,index)=>{
+            return <Bugitem key={index} bug = {bug} />
+          })}
         </tbody>
       </Table>
     </div>

@@ -3,6 +3,18 @@ const router = express.Router();
 const Bug = require('../models/Bug');
 const { body , validationResult } = require("express-validator");
 
+
+// ROUTE 1 :Get all the BUgs GET:"/bugs/fetchallnotes". login Required
+router.get('/fetchallbugs',  async (req, res) => {
+    try {
+            const bugs = await Bug.find();
+            res.json(bugs)
+    } catch (error) {
+            console.error(error.message); 
+            res.status(500).send("Internal Server Error")
+    }
+})
+
 router.post('/addbug',[
     body('name',"Name length is minimus 5").isLength({ min: 5 }),
     body('description',"Description length must be 10 Character").isLength({ min: 5 }),

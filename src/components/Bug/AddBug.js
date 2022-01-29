@@ -1,36 +1,29 @@
-import React,{useState,useRef} from 'react';
-
+import React, { useState, useRef,useContext } from 'react';
+import bugContext from "../../context/bugs/bugContext";
 function AddBug() {
-  const [bug,setBug] = useState({name:"",description:"",type:""});
+  const [bug, setBug] = useState({ name: "", description: "", type: "" });
+  const context = useContext(bugContext);
+    const {addBug} = context;
   const refClose = useRef(null);
-  const addBugs = async(e)=>{
+  const addBugs = async (e) => {
     e.preventDefault();
-    if(bug.name === "" || bug.description === ""){
+    if (bug.name === "" || bug.description === "") {
 
-    }else{
-
-    
-    const response = await fetch(`http://localhost:5000/bugs/addbug`, {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({name:bug.name,description:bug.description,type:bug.type})
-              });
-              const json = await response.json();
-              refClose.current.click();
-              console.log(json)
-            }
+    } else {
+      addBug(bug.name,bug.description,bug.type);
+        setBug({name:"",description:"",type:""})
+      refClose.current.click();
+    }
   }
-  const onChange = (e)=>{
-    setBug({...bug,[e.target.name]:e.target.value});
+  const onChange = (e) => {
+    setBug({ ...bug, [e.target.name]: e.target.value });
   }
   return <div className="mt-4">
-    <button type="button" className="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#addBug">
+    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBug">
       Report a new Bug
     </button>
 
-            
+
     <div className="modal fade" id="addBug" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
@@ -45,7 +38,7 @@ function AddBug() {
             <div className="modal-body">
               <div className="mb-3">
                 <label htmlFor="bug-summary" className="form-label float-start fs-5">Summary</label>
-                <input type="text" className="form-control" id="bug-summary" name="name" onChange={onChange} placeholder="Summary of the New Bug" required/>
+                <input type="text" className="form-control" id="bug-summary" name="name" onChange={onChange} placeholder="Summary of the New Bug" required />
               </div>
               <div className="mb-3">
                 <label htmlFor="bug-desc" className="form-label float-start fs-5">Description</label>
@@ -56,11 +49,11 @@ function AddBug() {
                   <label htmlFor="bug-tag" className="col-form-label fs-5">Add tag : </label>
                 </div>
                 <div className="col-auto">
-                  <input type="text" id="bug-tag" name='type' onChange={onChange} className="form-control"/>
+                  <input type="text" id="bug-tag" name='type' onChange={onChange} className="form-control" />
                 </div>
-                
+
               </div>
-              
+
             </div>
 
             {/* footer of the modal  */}
