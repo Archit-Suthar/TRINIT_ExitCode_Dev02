@@ -29,7 +29,7 @@ body{
 .container{
   /* display: none; */
   background: #fff;
-  width: 410px;
+  /* width: 410px; */
   padding: 30px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }

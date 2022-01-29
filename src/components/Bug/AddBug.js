@@ -5,6 +5,11 @@ function AddBug() {
   const refClose = useRef(null);
   const addBugs = async(e)=>{
     e.preventDefault();
+    if(bug.name === "" || bug.description === ""){
+
+    }else{
+
+    
     const response = await fetch(`http://localhost:5000/bugs/addbug`, {
                 method: 'POST',
                 headers: {
@@ -15,6 +20,7 @@ function AddBug() {
               const json = await response.json();
               refClose.current.click();
               console.log(json)
+            }
   }
   const onChange = (e)=>{
     setBug({...bug,[e.target.name]:e.target.value});
@@ -24,6 +30,7 @@ function AddBug() {
       Report a new Bug
     </button>
 
+            
     <div className="modal fade" id="addBug" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
@@ -36,7 +43,6 @@ function AddBug() {
 
             {/* body of the modal  */}
             <div className="modal-body">
-            <form>
               <div className="mb-3">
                 <label htmlFor="bug-summary" className="form-label float-start fs-5">Summary</label>
                 <input type="text" className="form-control" id="bug-summary" name="name" onChange={onChange} placeholder="Summary of the New Bug" required/>
@@ -54,7 +60,7 @@ function AddBug() {
                 </div>
                 
               </div>
-              </form>
+              
             </div>
 
             {/* footer of the modal  */}
@@ -62,7 +68,6 @@ function AddBug() {
               <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" onClick={addBugs} className="btn btn-primary">Save changes</button>
             </div>
-
 
           </div>
 
