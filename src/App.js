@@ -7,7 +7,6 @@ import Table from './components/buglist/buglist'
 function App() {
   return (
     <div className="App">
-      <Ournav/>
       <Table/>
       <AddBug/>
 
