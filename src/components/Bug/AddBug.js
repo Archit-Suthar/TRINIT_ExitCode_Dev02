@@ -1,7 +1,8 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 
 function AddBug() {
   const [bug,setBug] = useState({name:"",description:"",type:""});
+  const refClose = useRef(null);
   const addBugs = async(e)=>{
     e.preventDefault();
     const response = await fetch(`http://localhost:5000/bugs/addbug`, {
@@ -12,6 +13,7 @@ function AddBug() {
                 body: JSON.stringify({name:bug.name,description:bug.description,type:bug.type})
               });
               const json = await response.json();
+              refClose.current.click();
               console.log(json)
   }
   const onChange = (e)=>{
@@ -34,9 +36,10 @@ function AddBug() {
 
             {/* body of the modal  */}
             <div className="modal-body">
+            <form>
               <div className="mb-3">
                 <label htmlFor="bug-summary" className="form-label float-start fs-5">Summary</label>
-                <input type="text" className="form-control" id="bug-summary" name="name" onChange={onChange} placeholder="Summary of the New Bug" />
+                <input type="text" className="form-control" id="bug-summary" name="name" onChange={onChange} placeholder="Summary of the New Bug" required/>
               </div>
               <div className="mb-3">
                 <label htmlFor="bug-desc" className="form-label float-start fs-5">Description</label>
@@ -51,11 +54,12 @@ function AddBug() {
                 </div>
                 
               </div>
+              </form>
             </div>
 
             {/* footer of the modal  */}
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" ref={refClose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" onClick={addBugs} className="btn btn-primary">Save changes</button>
             </div>
 

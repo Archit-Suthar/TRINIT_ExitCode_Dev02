@@ -1,7 +1,8 @@
 import React,{useState} from 'react';
-import {
-    Link
-  } from "react-router-dom";
+import './login.css'
+// import {
+//     Link
+//   } from "react-router-dom";
   import { useNavigate } from 'react-router'
 // import './login/login.css';
 const Login = () => {
@@ -10,7 +11,7 @@ const Login = () => {
    const [credentials,setCredentials] = useState({email:"",password:""});
    const handleSubmit = async (e)=>{
       e.preventDefault();
-          const response = await fetch(`http://localhost:5000/api/auth/login`, {
+          const response = await fetch(`http://localhost:5000/admin/login`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +70,7 @@ const Login = () => {
              <button type="submit">login</button>
           </div>
           <div className="signup-link">
-             Not a member? <Link to="/signup">Register</Link>
+             {/* Not a member? <Link to="/signup">Register</Link> */}
           </div>
        </form>
     </div>
