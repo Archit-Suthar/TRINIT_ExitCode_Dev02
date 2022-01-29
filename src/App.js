@@ -1,8 +1,8 @@
 import './App.css';
-import Navbar from './components/navbar/navbar';
+import Navbar from './components/navbar/Navbar';
 import AddBug from './components/Bug/AddBug';
-import Buglist from './components/buglist/buglist';
-import Login from './components/login/login'
+import Buglist from './components/buglist/Buglist';
+// import Login from './components/login/Login'
 function App() {
   return (
     <div className="App">
