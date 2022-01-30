@@ -11,6 +11,10 @@ function AddBug() {
 
     } else {
       addBug(bug.name,bug.description,bug.type);
+      localStorage.setItem('name', bug.name);
+      localStorage.setItem('description', bug.description);
+      localStorage.setItem('type', bug.type);
+      localStorage.setItem('status', "TODO");
         setBug({name:"",description:"",type:""})
       refClose.current.click();
     }

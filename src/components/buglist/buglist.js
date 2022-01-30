@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import bugContext from "../../context/bugs/bugContext";
 import Bugitem from '../Bug/Bugitem';
+import AddBug from '../Bug/AddBug';
 import { useNavigate } from 'react-router'
 import { Table } from 'react-bootstrap'
 export default function Buglist() {
@@ -36,10 +37,12 @@ export default function Buglist() {
         </thead>
         <tbody>
           {bugs.map((bug,index)=>{
-            return <Bugitem key={index} bug = {bug} />
+            return <Bugitem key={index} index={index} bug = {bug} />
           })}
         </tbody>
       </Table>
+
+      <AddBug/>
     </div>
   )
 }

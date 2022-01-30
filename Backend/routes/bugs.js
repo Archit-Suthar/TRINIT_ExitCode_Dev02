@@ -28,7 +28,7 @@ router.post('/addbug',[
     try {
         let bug = await Bug.findOne({name:req.body.name});
     if(bug){
-        return res.status(400).json({error:"Sorry a user with this email already exists"})
+        return res.status(400).json({error:"Sorry a bug with this name already exists"})
     }
 
     bug = await Bug.create({
