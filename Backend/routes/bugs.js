@@ -53,4 +53,31 @@ router.post('/addbug',[
 
 })
 
+
+// ROUTE 3 :Update an existing bug using  put:"/bug/findbug". login Required
+
+router.put('/findbug/:id', async (req, res) => {
+    const { name, description, type } = req.body;
+    try {
+
+            // // create new Object
+            // const newBug = {};
+            // if (name) { newBug.name = name };
+            // if (description) { newBug.description = description };
+            // if (type) { newBug.type = type };
+
+            // //find the note to be update and update it
+            let bug = await Bug.findById(req.params.id);
+            if (!bug) { return res.status(404).send('Not Found') }
+
+
+            // bug = await Bug.findByIdAndUpdate(req.params.id, { $set: newBug }, { new: true })
+            res.json({ bug })
+    } catch (error) {
+            console.error(error.message);
+            res.status(500).send("Internal Server Error")
+    }
+
+})
+
 module.exports = router;

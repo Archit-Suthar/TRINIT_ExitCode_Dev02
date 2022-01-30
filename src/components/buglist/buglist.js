@@ -17,6 +17,8 @@ export default function Buglist() {
     // eslint-disable-next-line
 }, [])
 
+  
+
   const h1style = {
     color: 'grey',
     letterSpacing: '0.2rem'
@@ -37,7 +39,7 @@ export default function Buglist() {
         </thead>
         <tbody>
           {bugs.map((bug,index)=>{
-            return <Bugitem key={index} index={index} bug = {bug} />
+            return <Bugitem key={index} index={index}  bug = {bug} />
           })}
         </tbody>
       </Table>
